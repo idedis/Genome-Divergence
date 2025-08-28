@@ -78,6 +78,10 @@ Siglevel 95 %. Histograms saved in directories:
 11.In directory histos you have (previously computed) all the histograms used in the paper "Genome Divergence Based on Entropic Segmentation of DNA" , Bernaola-Galván et al.).
 To reproduce figure 1 of this paper, type:
 $ python fig_example.py 95 50 Homo_sapiens Xenopus_tropicalis Alligator_mississippiensis Gallus_gallus Danio_rerio  Drosophila_melanogaster Asterias_rubens Oryza_sativa Saccharomyces_cerevisiae
+file fig_example_various.pdf will be created
+To reproduce figure 2:
+$ python fig_example02.py 95 50 Homo_sapiens Gorilla_gorilla Pan_troglodytes Felis_catus Canis_lupus Mustela_putorius Rattus_norvegicus Mus_musculus Cricetulus_griseus
+
 
 $ python 
 
