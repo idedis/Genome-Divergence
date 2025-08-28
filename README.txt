@@ -1,6 +1,6 @@
 Step-by-step instructions (Linux only):
 
-1. Download `genome_signature.zip` and unpack it. This will create a directory named `genomedivergence` containing several files and two subdirectories: `./seqs` and `./histos`.
+1. Download `genome_divergence.zip` and unpack it. This will create a directory named `genome-divergence` containing several files and two subdirectories: `./seqs` and `./histos`.
 
 2. (Optional) Create a Python virtual environment (e.g., `gs_env`) and activate it:
 
