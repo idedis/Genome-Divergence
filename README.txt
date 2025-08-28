@@ -70,20 +70,33 @@ Siglevel 95 %. Histograms saved in directories:
 ***********************************
 9. To plot the histograms you can type:
    $ python fig_example 0.95 025 species_01 species_02 species_03
-  you should obtain something like figure screen_capture.png (in your folder)
+     you should obtain something like figure screen_capture.png (in your folder)
    If you type $ python fig_example02 0.95 025 species_01 species_02 species_03
    you plot only RY histograms (figure screen_capture02.png)
     
   
-11.In directory histos you have (previously computed) all the histograms used in the paper "Genome Divergence Based on Entropic Segmentation of DNA" , Bernaola-Galván et al.).
-To reproduce figure 1 of this paper, type:
-$ python fig_example.py 95 50 Homo_sapiens Xenopus_tropicalis Alligator_mississippiensis Gallus_gallus Danio_rerio  Drosophila_melanogaster Asterias_rubens Oryza_sativa Saccharomyces_cerevisiae
-file fig_example_various.pdf will be created
-To reproduce figure 2:
-$ python fig_example02.py 95 50 Homo_sapiens Gorilla_gorilla Pan_troglodytes Felis_catus Canis_lupus Mustela_putorius Rattus_norvegicus Mus_musculus Cricetulus_griseus
+10.In directory histos you have (previously computed) all the histograms used in the paper "Genome Divergence Based on Entropic Segmentation of DNA" , Bernaola-Galván et al.).
+   To reproduce figure 1 of this paper, type:
+   $ python fig_example.py 95 50 Homo_sapiens Xenopus_tropicalis Alligator_mississippiensis Gallus_gallus Danio_rerio  Drosophila_melanogaster Asterias_rubens Oryza_sativa Saccharomyces_cerevisiae
+   file fig_example_various.pdf will be created
+   To reproduce figure 2:
+   $ python fig_example02.py 95 50 Homo_sapiens Gorilla_gorilla Pan_troglodytes Felis_catus Canis_lupus Mustela_putorius Rattus_norvegicus Mus_musculus Cricetulus_griseus
 
 
-$ python 
+11. To compute the distance matrix (i.e. the matrix with the JS distance between pairs of species) run:
+   $ python get_distances.py
+   You should obtain something like:
+
+   Siglevel 0.95 ...done
+   Siglevel 0.99 ...done
+
+   Now at directory distances you will have files named matrix_JS....tsv and files named table_js....tsv. They are tab separated files with:
+   - matrix -> a square symmetric matrix with the JS distances (in this case 3x3 matrices)
+   - table -> a table with a list of all possible pairs of species and its JS distance (in this case 6 lines)
+
+   The name of the file is self explanatory: table_JS_95_cg_025.tsv is the table for the distances computed for the segmentations at 95% with 25 bins and alphabet SW (cg)
+
+12. About the divergence times obtained from www.timetree.org, you can find the file time_distance.dat with the time divergence for all pairs of species (in Myears)
 
  
    
