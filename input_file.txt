@@ -19,7 +19,7 @@ histos
 #
 #
 # List of species (List of species, comma separated and name should be Genus_specific epithet)
-Ornithorhynchus_anatinus,Sus_scrofa,Pan_paniscus
+species_01,species_02,species_03
 #
 # Max. number of processes
 16
