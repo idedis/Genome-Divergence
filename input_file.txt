@@ -1,0 +1,28 @@
+# Values of significance level (comma separated, two decimal places, add all you want)
+0.95,0.99
+#
+#
+# Number of bins for the histogram (three digits zero padded, add all you want)
+050,075
+#
+#
+# Root directory for fasta files
+seqs
+#
+#
+# Root directory to store segmentations
+segments
+#
+# Root directory to store histograms
+histos
+#
+#
+#
+# List of species (List of species, comma separated and name should be Genus_specific epithet)
+Ornithorhynchus_anatinus,Sus_scrofa,Pan_paniscus
+#
+# Max. number of processes
+16
+#
+# Root directory to store distances
+distances
