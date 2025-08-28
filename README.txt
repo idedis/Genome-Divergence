@@ -1,103 +1,102 @@
-Step by step instructions ONLY FOR LINUX:
+Step-by-step instructions (Linux only):
 
-1. Download genome_signature.zip and unpack it. This will create a directory genomedivergence with several files and two subdirectories ./seqs and ./histos
-2. Optional: create a Python virtual environment (e.g. gs_env) and activate it by typing:
-   $ mkdir gs_env
+1. Download `genome_signature.zip` and unpack it. This will create a directory named `genomedivergence` containing several files and two subdirectories: `./seqs` and `./histos`.
+
+2. (Optional) Create a Python virtual environment (e.g., `gs_env`) and activate it:
+
    $ python3 -m venv gs_env
    $ source gs_env/bin/activate
-3. Install the Python required packages: psutil, scipy, numpy, pandas and matplotlib by typing:
-   $ pip install psutil scipy numpy pandas matplotlib
-4. You will need the utility parallel, if you need install it by typing:
-   $ sudo apt install parallel    
-5. Find the file input_file.txt and open it. There you can modifify the options to run the different scripts. In this file you specify the genomes you want to segment, the different
-   significance levels (if you want to try several), the number of bins for the histograms (also you can do it for serveral values), specify the root directory for the DNA sequences,
-   for the segmentation files and for the histograms. You also indicate the list of species being segmented, the maximum number of processes sent in parallel (if you don't know
-   what is this, dont modify). Finaly specify the root directory for the files with distances among species.
 
-   All the DNA files (contigs or chromosomes) of each species in fasta format (.fa or .fasta) should be in a subdirectory inside seqs. The name of the subdirectory should be Genus_specific epithet (e.g. Homo_sapiens)
-
-   As an example we have included three "species": species_01,species_02 and species_03 (please check directory seqs)
- 
-6. Before knowing what we are doing, let's check that everthing works fine, type
-   $ python segment_parall.py
-   If everthing goes OK, you should obtain something like:
-
-s=0.95 Alfabeto= -A 4 -bo seqs/species_01/ --> segments/species_01/
-s=0.95 Alfabeto= -A 4 -bo seqs/species_02/ --> segments/species_02/
-s=0.95 Alfabeto= -A 4 -bo seqs/species_03/ --> segments/species_03/
-s=0.99 Alfabeto= -A 4 -bo seqs/species_01/ --> segments/species_01/
-s=0.99 Alfabeto= -A 4 -bo seqs/species_02/ --> segments/species_02/
-s=0.99 Alfabeto= -A 4 -bo seqs/species_03/ --> segments/species_03/
-******************
-18 segmentations launched in background
-You can also monitor the processes with top or htop
-Processes running 0 ... (Ctr+C to stop)   
-
-All segmentations finished
-
-    You can try with other sequences, note that a complete genome could take a lot of time. If your computer has many cores you can increase the number of parallel processes from 16 to the desired value. 
-
-7. Now you have the segmentations done. You can explore the directory segments to see the file with the segmentations one for each contig or chromosome.
-   They have a header and, for each segment a line with begining of the segment, end of the segment, size, four columns with the number of each nucleotide (ATCG), two columns with composition (R/Y), two
-   columns with composition (S/W) and other two with composition (K/M)
-
-8. To create the histograms of R/Y, S/W and K/M composition run:
-   $ python get_histos_parall.py
-   You should obtain something like:
+3. Install the required Python packages (`psutil`, `scipy`, `numpy`, `pandas`, and `matplotlib`):
    
-Deleting old segments/species_01/total_95.dat
-Deleting old segments/species_02/total_95.dat
-Creating segments/species_01/total_95.dat
-Creating segments/species_02/total_95.dat
-Deleting old segments/species_03/total_95.dat
-Creating segments/species_03/total_95.dat
-1/6 species_01	bins= 25	 
-2/6 species_02	bins= 25	 
-3/6 species_03	bins= 25	 
-4/6 species_01	bins= 50	 
-5/6 species_02	bins= 50	 
-6/6 species_03	bins= 50	 
+   $ pip install psutil scipy numpy pandas matplotlib
 
-***********************************
+4. You will need the utility **parallel**. Install it if necessary:
+   
+   $ sudo apt install parallel
 
-Siglevel 95 %. Histograms saved in directories: 
-    histos/species_01
-    histos/species_02
-    histos/species_03
+5. Locate the file `input_file.txt` and open it. Here you can modify the options for running the scripts. In this file, you specify:
+   - The significance levels (you may specify multiple values).
+   - The number of bins for the histograms (again, multiple values are possible).
+   - The root directories for the DNA sequences, the segmentation files, and the histograms.
+   - The list of species being segmented.
+   - The maximum number of processes to run in parallel (if unsure, do not change this).
+   - The root directory for the distance files among species.
 
-***********************************
-***********************************
-***********************************
-9. To plot the histograms you can type:
-   $ python fig_example 0.95 025 species_01 species_02 species_03
-     you should obtain something like figure screen_capture.png (in your folder)
-   If you type $ python fig_example02 0.95 025 species_01 species_02 species_03
-   you plot only RY histograms (figure screen_capture02.png)
-    
-  
-10.In directory histos you have (previously computed) all the histograms used in the paper "Genome Divergence Based on Entropic Segmentation of DNA" , Bernaola-Galván et al.).
-   To reproduce figure 1 of this paper, type:
-   $ python fig_example.py 95 50 Homo_sapiens Xenopus_tropicalis Alligator_mississippiensis Gallus_gallus Danio_rerio  Drosophila_melanogaster Asterias_rubens Oryza_sativa Saccharomyces_cerevisiae
-   file fig_example_various.pdf will be created
-   To reproduce figure 2:
+   All DNA files (contigs or chromosomes) in FASTA format (`.fa` or `.fasta`) for each species must be placed in a subdirectory inside `seqs`. The subdirectory name should follow the format Genus_species (e.g., Homo_sapiens).
+
+   As an example, three species are included: `species_01`, `species_02`, and `species_03` (see the `seqs` directory).
+
+6. Before proceeding further, check that everything works correctly:
+   
+   $ python segment_parall.py
+   
+   If everything is fine, you should see output similar to:
+   s=0.95 Alfabeto= -A 4 -bo seqs/species_01/ --> segments/species_01/
+   s=0.95 Alfabeto= -A 4 -bo seqs/species_02/ --> segments/species_02/
+   s=0.95 Alfabeto= -A 4 -bo seqs/species_03/ --> segments/species_03/
+   ...
+   18 segmentations launched in background
+
+   You can monitor the processes with `top` or `htop`.  
+   When all segmentations are complete, you will see:
+   All segmentations finished
+
+   You can try other sequences, but note that a complete genome may take a long time. If your computer has many cores, you can increase the number of parallel processes (default: 16).
+
+7. Once the segmentations are finished, you can explore the `segments` directory. Each file corresponds to a contig or chromosome and includes:
+   - A header.
+   - For each segment: start position, end position, size, nucleotide counts (A, T, C, G), composition (R/Y), composition (S/W), and composition (K/M).
+
+8. To create histograms of R/Y, S/W, and K/M composition, run:
+
+   $ python get_histos_parall.py
+   
+   This will generate output similar to:
+   
+   Deleting old segments/species_01/total_95.dat
+   Creating segments/species_01/total_95.dat
+   ...
+   Siglevel 95 %. Histograms saved in:
+       histos/species_01
+       histos/species_02
+       histos/species_03
+
+9. To plot the histograms run:
+
+   $ python fig_example.py 0.95 025 species_01 species_02 species_03
+
+   This produces an output similar to `screen_capture.png`.
+
+   Alternatively, to plot only R/Y histograms:
+
+   $ python fig_example02.py 0.95 025 species_01 species_02 species_03
+   
+   This generates `screen_capture02.png`.
+
+10. The `histos` directory already contains all histograms used in the paper "Genome Divergence Based on Entropic Segmentation of DNA" (Bernaola-Galván et al.).
+
+   To reproduce Figure 1 of the paper run:
+   $ python fig_example.py 95 50 Homo_sapiens Xenopus_tropicalis Alligator_mississippiensis Gallus_gallus Danio_rerio Drosophila_melanogaster Asterias_rubens Oryza_sativa Saccharomyces_cerevisiae
+   
+   This creates `fig_example_various.pdf`.
+
+   To reproduce Figure 2 run:
+   
    $ python fig_example02.py 95 50 Homo_sapiens Gorilla_gorilla Pan_troglodytes Felis_catus Canis_lupus Mustela_putorius Rattus_norvegicus Mus_musculus Cricetulus_griseus
 
+11. To compute the distance matrix (i.e., the Jensen-Shannon distances between species), run:
 
-11. To compute the distance matrix (i.e. the matrix with the JS distance between pairs of species) run:
    $ python get_distances.py
-   You should obtain something like:
 
+   You should see:
    Siglevel 0.95 ...done
    Siglevel 0.99 ...done
 
-   Now at directory distances you will have files named matrix_JS....tsv and files named table_js....tsv. They are tab separated files with:
-   - matrix -> a square symmetric matrix with the JS distances (in this case 3x3 matrices)
-   - table -> a table with a list of all possible pairs of species and its JS distance (in this case 6 lines)
+   In the `distances` directory you will find:
+   - matrix_JS...tsv: square symmetric matrices of JS distances.
+   - table_JS...tsv: tables listing all possible species pairs with their JS distances.
 
-   The name of the file is self explanatory: table_JS_95_cg_025.tsv is the table for the distances computed for the segmentations at 95% with 25 bins and alphabet SW (cg)
+   Example: `table_JS_95_cg_025.tsv` is the distance table for segmentations at 95% significance, 25 bins, alphabet SW (cg).
 
-12. About the divergence times obtained from www.timetree.org, you can find the file time_distance.dat with the time divergence for all pairs of species (in Myears)
-
- 
-   
-   
+12. Divergence times (from www.timetree.org) are available in the file `time_distance.dat`, which lists divergence times (in Myears) for all species pairs.
