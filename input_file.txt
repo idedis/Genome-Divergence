@@ -3,7 +3,7 @@
 #
 #
 # Number of bins for the histogram (three digits zero padded, add all you want)
-050,075
+025,050
 #
 #
 # Root directory for fasta files
