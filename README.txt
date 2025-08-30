@@ -6,13 +6,32 @@ Step-by-step instructions (Linux only):
 
    $ python3 -m venv gs_env
    $ source gs_env/bin/activate
+   
+   If this does not work, you should install venv by typing:
+   
+   $ sudo apt install python3-venv
+   
+   Once activated the environment you will see the name of the environment before the prompt
+   of the system:
+   
+   e.g.   (gs_env)$  instead of $
+   
+   When you finish working with Python you can deactivate the environment by typing:
+   
+   (gs_env)$ deactivate
+   
+   This deactivates the environment but does not delete it. You can re-activate by typing again
+   
+   $source gs_env/bin/activate
+   
+   To eliminate the enviroment, remove the directory gs_env
 
 3. Install the required Python packages (`psutil`, `scipy`, `numpy`, `pandas`, and `matplotlib`):
    
-   $ pip install psutil scipy numpy pandas matplotlib
+   (gs_env)$ pip install psutil scipy numpy pandas matplotlib
 
 4. Check that the segmentation program is working by typing:
-    $ ./scc
+    (gs_env)$ ./scc
    
    you should get a help screen, otherwise you will need to recompile the binary:
    - Go to https://github.com/idedis/scc download `scc.zip` and unpack it (in the same directory)
@@ -24,7 +43,7 @@ Step-by-step instructions (Linux only):
 
 5. You will need the utility **parallel**. Install it if necessary:
    
-   $ sudo apt install parallel
+   (gs_env)$ sudo apt install parallel
 
 6. Locate the file `input_file.txt` and open it. Here you can modify the options for running the scripts. In this file, you specify:
    - The significance levels (you may specify multiple values).
@@ -40,7 +59,7 @@ Step-by-step instructions (Linux only):
 
 7. Before proceeding further, check that everything works correctly:
    
-   $ python segment_parall.py
+   (gs_env)$ python segment_parall.py
    
    If everything is fine, you should see output similar to:
    s=0.95 Alfabeto= -A 4 -bo seqs/species_01/ --> segments/species_01/
@@ -61,7 +80,7 @@ Step-by-step instructions (Linux only):
 
 9. To create histograms of R/Y, S/W, and K/M composition, run:
 
-   $ python get_histos_parall.py
+   (gs_env)$ python get_histos_parall.py
    
    This will generate output similar to:
    
@@ -75,15 +94,15 @@ Step-by-step instructions (Linux only):
 
 10. To plot the histograms run:
 
-   $ python fig_example.py 0.95 025 species_01 species_02 species_03
+   (gs_env)$ python fig_example.py 0.95 025 species_01 species_02 species_03
 
-   This produces an output similar to `screen_capture.png`.
+   This produces a pdf file similar to `screen_capture.png'
 
    Alternatively, to plot only R/Y histograms:
 
    $ python fig_example02.py 0.95 025 species_01 species_02 species_03
    
-   This generates `screen_capture02.png`.
+   This generates a pdf file similar to  `screen_capture02.png`.
 
 11. The `histos` directory already contains all histograms used in the paper "Genome Divergence Based on Entropic Segmentation of DNA" (Bernaola-Galván et al.).
 
